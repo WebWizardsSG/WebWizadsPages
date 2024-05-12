@@ -1,0 +1,33 @@
+.Title {
+    margin-top: 5em;
+    text-align: center;
+    color: #003C43;
+    font-size: 1.5em;
+}
+
+.flexWrapper {
+    margin-top: 5em;
+    margin-bottom: 11em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+ 
+.gridWrapper {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin-top: 1em;
+}
+
+.gridContainer1, 
+.gridContainer2 {
+text-align: center;
+}
+
+.gridContainer1 > video {
+    width: 40%
+}
+
+.gridContainer2 > video {
+    width: 40%
+}
