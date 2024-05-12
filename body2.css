@@ -1,0 +1,72 @@
+.TitleMessage {
+    font-size: 100%;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 5em;
+}
+.flexContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5em;
+}
+.gridContainer {
+    width: 70%;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    border: 1px dotted gray;
+    border-radius: 20px;
+}
+
+.leftContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3%;
+}
+
+.rightContent {
+    text-align: left;
+    float: left;
+    font-size: 150%;
+}
+
+#logo1 {
+    width: 80%;
+}
+
+#logo2 {
+    width: 50%;
+}
+
+.videoContent {
+    width: 100%;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.gridContainer:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+}
+
+.testimonialButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5em;
+}
+
+.testimonialButton > p {
+    background: #135D66;
+    padding: 1%;
+    border-radius: 10px;
+    color: white;
+    font-size: 150%;
+}
+
+#Testimonies:hover {
+    transform:scale(1.2);
+    transition: transform 0.3s ease-in-out;
+}

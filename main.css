@@ -2,12 +2,19 @@ html {
     scroll-behavior: smooth;
     margin: 0;
     border: 0;
+    overflow: auto!important;
+    max-height: 100% !important;
+    height: 100vh; 
+
   }
   
   body {
     margin: 0;
     border: 0;
     font-family: "League Spartan", Roboto, Arial;
+    overflow: auto!important;
+    max-height: 100% !important;
+    height: 100vh; 
   }
 
   a {
