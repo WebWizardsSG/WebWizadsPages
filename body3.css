@@ -1,0 +1,42 @@
+.Heading {
+  margin-top: 7%;
+  text-align: center;
+}
+
+.flexWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.gridWrapper {
+    width: 28%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#profileMe {
+  width: 100%;
+  border: 1px solid black;
+}
+
+.links:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.links a {
+    margin-top: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#github {
+    color: black !important;
+}
+
+#ghIcon {
+    width: 5%;
+    border-radius: 20px;
+}

@@ -70,3 +70,23 @@
     transform:scale(1.2);
     transition: transform 0.3s ease-in-out;
 }
+
+@media screen and (max-width: 820px) {
+    #Testimonies{
+        font-size: 100%;
+    }
+}
+
+/** Iphone 14 Pro Max **/
+@media screen and (max-width: 430px) {
+    #Testimonies{
+        font-size: 70%;
+    }
+}
+
+/** Iphone 12 Pro **/
+@media screen and (max-width: 430px) {
+    #Testimonies{
+        font-size: 50%;
+    }
+}
