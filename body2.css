@@ -15,21 +15,23 @@
     width: 70%;
     display: grid;
     grid-template-columns: 30% 70%;
-    border: 1px dotted gray;
-    border-radius: 20px;
+    border: 0.5px solid gray;
 }
 
 .leftContent {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 3%;
+    padding:0;
+    margin: 0;
 }
 
 .rightContent {
     text-align: left;
     float: left;
     font-size: 150%;
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
 
 #logo1 {
@@ -42,8 +44,7 @@
 
 .videoContent {
     width: 100%;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
+    height: 100%;
 }
 
 .gridContainer:hover {
@@ -61,7 +62,6 @@
 .testimonialButton > p {
     background: #135D66;
     padding: 1%;
-    border-radius: 10px;
     color: white;
     font-size: 150%;
 }
@@ -71,9 +71,16 @@
     transition: transform 0.3s ease-in-out;
 }
 
+/** Ipad Air **/
 @media screen and (max-width: 820px) {
     #Testimonies{
         font-size: 100%;
+    }
+    .gridContainer {
+        width: 80%;
+        display: grid;
+        grid-template-columns: 30% 70%;
+        border: 0.5px solid gray;
     }
 }
 
@@ -82,10 +89,17 @@
     #Testimonies{
         font-size: 70%;
     }
+
+.gridContainer {
+    width: 85%;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    border: 0.5px solid gray;
+}
 }
 
 /** Iphone 12 Pro **/
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 390px) {
     #Testimonies{
         font-size: 50%;
     }

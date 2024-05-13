@@ -46,3 +46,14 @@
     background: #1b4242;
     padding: 1em;
   }
+
+  /** ipad air **/
+  @media (max-width: 760px) {
+    .lists {
+      list-style-type: none;
+      font-size: 100%;
+      padding: 2em;
+    }
+  }
+
+  
