@@ -1,9 +1,78 @@
-  
-  /* Navigation bar -------------------------------------*/
-  /* Add a black background color to the top navigation */
-  .topnav {
-    background: #135D66;
-    overflow: hidden;
+/* Navigation bar -------------------------------------*/
+/* Add a black background color to the top navigation */
+.topnav {
+  background: #135d66;
+  overflow: hidden;
+}
+
+.BannerStyle {
+  margin-bottom: 0.4em;
+  margin-top: 1em;
+  width: 20%;
+}
+
+.topnav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 1% 2%;
+  text-decoration: none;
+  font-family: "League Spartan", Roboto, Arial;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 8%;
+  padding-right: 8%;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #77b0aa;
+  color: black;
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #77b0aa;
+  color: white;
+}
+
+.topbannervideo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #003c43;
+}
+
+.FlexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.BannerStyle:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease-in-out;
+}
+
+/** 1080p **/
+@media screen and (max-width: 1920px) {
+  .topnav a {
+    padding-left: 7%;
+    padding-right: 7%;
+    font-size: 1.5em;
+    padding-top: 1%;
+    padding-bottom: 1%;
   }
 
   .BannerStyle {
@@ -11,101 +80,71 @@
     margin-top: 1em;
     width: 20%;
   }
+}
 
-  .topnav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  /* Style the links inside the navigation bar */
+/** 1440p **/
+@media screen and (max-width: 1440px) {
   .topnav a {
-    float: left;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 1% 2%;
-    text-decoration: none;
-    font-family: "League Spartan", Roboto, Arial;
+    padding-left: 7%;
+    padding-right: 7%;
+    font-size: 1.5em;
     padding-top: 1%;
     padding-bottom: 1%;
-    padding-left: 8%;
-    padding-right: 8%;
+  }
+
+  .BannerStyle {
+    margin-bottom: 0.4em;
+    margin-top: 1em;
+    width: 20%;
+  }
+}
+
+/** Ipad pro **/
+@media screen and (max-width: 1024px) {
+  .topnav a {
+    padding-left: 4.5%;
+    padding-right: 4.5%;
+    font-size: 1.8em;
+    padding-top: 3%;
+    padding-bottom: 3%;
+  }
+
+  .BannerStyle {
+    margin-bottom: 0.4em;
+    margin-top: 1em;
+    width: 25%;
+  }
+}
+/** Ipad Mini **/
+@media screen and (max-width: 768px) {
+  .topnav a {
+    padding-left: 4.5%;
+    padding-right: 4.5%;
     font-size: 1.5em;
-    }
-    
-    /* Change the color of links on hover */
-  .topnav a:hover {
-    background-color: #77B0AA;
-    color: black;
-    transform: scale(1.1);
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  /* Add a color to the active/current link */
-  .topnav a.active {
-    background-color: #77B0AA;
-    color: white;
-  }
-  
-  .topbannervideo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #003C43;
-  }
-  
-  .FlexCenter {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding-top: 5%;
+    padding-bottom: 5%;
   }
 
-  .BannerStyle:hover {
-    transform: scale(1.05);
-    transition: transform 0.3s ease-in-out;
+  .BannerStyle {
+    margin-bottom: 0.4em;
+    margin-top: 1em;
+    width: 34%;
+  }
+}
+
+/** IPhone 14 Pro Max**/
+@media screen and (max-width: 430px) {
+  .topnav a {
+    padding-left: 4.5%;
+    padding-right: 4.5%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    font-size: 0.9em;
   }
 
-  /** Ipad Pro **/
-  @media screen and (max-width: 1024px) {
-    .topnav a {
-      padding-left: 4%;
-      padding-right: 4%;
-      font-size: 1.9em;
-    }
+  .BannerStyle {
+    margin-bottom: 0.4em;
+    margin-top: 1em;
+    width: 65%;
   }
-
-  /** Ipad Air **/
-  @media screen and (max-width: 1024px) {
-    .topnav a {
-      padding-left: 4%;
-      padding-right: 4%;
-      font-size: 1.7em;
-    }
-  }
-
-    /** Ipad Mini **/
-    @media screen and (max-width: 1024px) {
-      .topnav a {
-        padding-left: 4%;
-        padding-right: 4%;
-        font-size: 1.5em;
-      }
-    }
-
-    /** IPhone 14 Pro Max**/
-    @media screen and (max-width: 430px) {
-      .topnav a {
-        padding-left: 4%;
-        padding-right: 4%;
-        padding-top: 2%;
-        padding-bottom: 2%;
-        font-size: 1em;
-      }
-
-      .BannerStyle {
-        margin-bottom: 0.4em;
-        margin-top: 1em;
-        width: 30%;
-      }
-    }    
-  
+}
