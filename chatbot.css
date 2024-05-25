@@ -1,0 +1,31 @@
+.chatbot {
+    position: fixed;
+    bottom: 20px;
+    right: 60px;
+    width: 162px;
+    height: 60px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    z-index: 1;
+  }
+  
+  .chatbot:hover {
+    transform: scale(1.1);
+    transition: ease-in-out 0.3s;
+  }
+  
+  .floating-button {
+    position: fixed;
+    bottom: 20px;
+    right: 60px;
+    width: 162px;
+    height: 60px;
+    border-radius: 50%;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    z-index: 1;
+  }

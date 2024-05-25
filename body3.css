@@ -4,16 +4,16 @@
 }
 
 .flexWrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 .gridWrapper {
-    width: 28%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 28%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #profileMe {
@@ -22,21 +22,21 @@
 }
 
 .links:hover {
-    transform: scale(1.1);
-    transition: transform 0.3s ease-in-out;
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
 }
 
 .links a {
-    margin-top: 3%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  margin-top: 3%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 #github {
-    color: black !important;
+  color: black !important;
 }
 
 #ghIcon {
-    width: 5%;
-    border-radius: 20px;
+  width: 5%;
+  border-radius: 20px;
 }
