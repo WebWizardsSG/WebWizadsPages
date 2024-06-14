@@ -106,3 +106,16 @@
   transition: ease-out 0.8s;
   border-radius: 50px;
 }
+
+.pptx {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2%;
+  padding: 2%;
+  text-align: center;
+}
+
+.iframeWrapper {
+  width: 70%
+}
