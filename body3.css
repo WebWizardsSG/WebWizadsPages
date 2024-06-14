@@ -12,15 +12,33 @@
   text-align: center;
 }
 
+.contactCard > img:hover {
+  transition: ease-in-out 0.3s;
+  border: 1px solid black;
+  border-radius: 100px;
+  transform: scale(1.3);
+}
+
 .contactCard > img {
   display: flex;
   justify-content: center;
   align-items: center;
   border: 1px solid black;
+  border-radius: 50px;
 }
 
 .contactDetails {
   margin-top: 2%;
+  padding:1%;
+  font-size: 150%;
+}
+
+.contactDetails:hover {
+  transform: scale(1.3);
+  background: #003c43;
+  transition: ease-in-out 0.5s;
+  border-radius: 100px;
+  color: white;
 }
 
 .iconsSection {
@@ -32,14 +50,59 @@
 }
 
 .gridLinks {
-  width: 10%;
+  width: 40%;
   display: grid;
-  grid-template-columns: 50% 50%;
-  grid-gap: 1rem;
+  grid-template-columns: 33.333333333% 33.333333333% 33.333333333%;
   margin-top: 2%;
+  grid-gap: 1em;
+}
+.gridLinks a {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.iconImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
 }
 
 .icons {
   object-fit: contain;
   width: 100%;
+}
+
+.icons:hover {
+  transform: scale(1.3);
+  transition: ease 0.3s;
+}
+
+.mailSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2%;
+  font-size: 2em;
+}
+
+.mail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2%;
+  background: #003c43 ;
+  padding: 2%;
+  text-align: center;
+}
+
+.mail:hover {
+  background: black;
+  transform: scale(1.1,1.1,1.1);
+  transition: ease 0.8s;
+  transition: ease-out 0.8s;
+  border-radius: 50px;
 }
