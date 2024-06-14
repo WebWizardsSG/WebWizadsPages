@@ -1,42 +1,45 @@
-.Heading {
-  margin-top: 7%;
+.heading1 {
+  text-align: center !important;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.contactCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   text-align: center;
 }
 
-.flexWrapper {
+.contactCard > img {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-}
-.gridWrapper {
-  width: 28%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#profileMe {
-  width: 100%;
   border: 1px solid black;
 }
 
-.links:hover {
-  transform: scale(1.1);
-  transition: transform 0.3s ease-in-out;
+.contactDetails {
+  margin-top: 2%;
 }
 
-.links a {
-  margin-top: 3%;
+.iconsSection {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-#github {
-  color: black !important;
+  margin-top: 2%;
+  width: 100%;
 }
 
-#ghIcon {
-  width: 5%;
-  border-radius: 20px;
+.gridLinks {
+  width: 10%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-gap: 1rem;
+  margin-top: 2%;
+}
+
+.icons {
+  object-fit: contain;
+  width: 100%;
 }
