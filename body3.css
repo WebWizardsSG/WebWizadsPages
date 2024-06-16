@@ -117,5 +117,28 @@
 }
 
 .iframeWrapper {
-  width: 70%
+  width: 100%
+}
+
+@media screen and (max-width: 430px) {
+  .contactDetails:hover {
+    transform: scale(1.0);
+    background: #003c43;
+    transition: ease-in-out 0.5s;
+    color: white;
+    border-radius: 0px;
+  }
+
+  .mail:hover {
+    background: black;
+    transform: scale(1.0);
+    transition: ease 0.8s;
+    transition: ease-out 0.8s;
+  }
+  .contactCard > img:hover {
+    transition: ease-in-out 0.3s;
+    border: 1px solid black;
+    border-radius: 100px;
+    transform: scale(1.0);
+  }
 }
