@@ -119,3 +119,9 @@
 .iframeWrapper {
   width: 70%
 }
+
+@media (max-width: 430px) {
+  .iframeWrapper {
+    width: 100%
+  }
+}
