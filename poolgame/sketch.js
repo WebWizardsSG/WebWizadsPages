@@ -49,17 +49,20 @@ let coloredBalls = [
 let engine = Matter.Engine.create();
 engine.world.gravity.y = 0; // Remove gravity
 
+// Create a dimensions object
 const dimensions = {
   tableWidth: 900,
   tableHeight: tableWidth / 2,
   ballDiameter: tableWidth / 36,
   pocketSize: (tableWidth / 36) * 1.5,
 };
+
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(windowWidth - 200, windowHeight);
 
   whiteBallClicked = false;
 
+  // Create the borders
   bordersEngine();
 
   // Create the balls
@@ -109,55 +112,8 @@ function setup() {
     ...coloredBallObject,
   ]);
 
-  // Set up collision detection
-  Matter.Events.on(engine, "collisionStart", function (event) {
-    var pairs = event.pairs;
-
-    for (var i = 0; i < pairs.length; i++) {
-      var pair = pairs[i];
-      if (pair.bodyA.label === "ball" && pair.bodyB.label === "ball") {
-        console.log(
-          "Collision detected between balls:",
-          pair.bodyA.label,
-          "and",
-          pair.bodyB.label
-        );
-        ballCollision.play();
-      }
-    }
-  });
-
-  Matter.Events.on(engine, "collisionActive", function (event) {
-    var pairs = event.pairs;
-
-    for (var i = 0; i < pairs.length; i++) {
-      var pair = pairs[i];
-      if (pair.bodyA.label === "ball" && pair.bodyB.label === "ball") {
-        console.log(
-          "Collision still active between balls:",
-          pair.bodyA.label,
-          "and",
-          pair.bodyB.label
-        );
-      }
-    }
-  });
-
-  Matter.Events.on(engine, "collisionEnd", function (event) {
-    var pairs = event.pairs;
-
-    for (var i = 0; i < pairs.length; i++) {
-      var pair = pairs[i];
-      if (pair.bodyA.label === "ball" && pair.bodyB.label === "ball") {
-        console.log(
-          "Collision ended between balls:",
-          pair.bodyA.label,
-          "and",
-          pair.bodyB.label
-        );
-      }
-    }
-  });
+  // Collision detection
+  collisionDetection();
 }
 
 function draw() {
@@ -173,11 +129,9 @@ function draw() {
   // Draw the table
   drawTable();
 
-  // Draw the pockets
-  drawPockets();
-
   // Draw the borders (walls)
-  fill(128, 128, 128); // Grey color for the borders
+  fill(33,74,23); // Grey color for the borders
+  noStroke();
   for (let border of borders) {
     rectMode(CENTER);
     rect(
@@ -187,6 +141,9 @@ function draw() {
       border.bounds.max.y - border.bounds.min.y
     );
   }
+  stroke(0);
+  // Draw the pockets
+  drawPockets();
   // Draw the balls
   for (let ball of balls) {
     if (ball && ball.position) {

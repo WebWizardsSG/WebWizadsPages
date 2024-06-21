@@ -6,7 +6,7 @@ function drawTable() {
   // Draw the table's playing area
   fill(18, 94, 0); // Green color for the table
   rect(550, 275, tableWidth, tableHeight);
-
+  
   // Draw D pocket
   stroke("gray");
   line(250, 40, 250, tableHeight + 50);

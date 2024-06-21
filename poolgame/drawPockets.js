@@ -7,48 +7,44 @@ function drawPockets() {
     {
       x: 100,
       y: 50,
-      w: pocketSize * 2,
-      h: pocketSize * 2,
+      w: pocketSize * 1,
+      h: pocketSize * 1,
       start: 0,
       stop: HALF_PI,
     }, // Top left pocket - quarter circle
     {
       x: 1000,
       y: 50,
-      w: pocketSize * 2,
-      h: pocketSize * 2,
+      w: pocketSize * 1,
+      h: pocketSize * 1,
       start: HALF_PI,
       stop: PI,
     }, // Top right pocket - quarter circle
     {
       x: 100,
       y: 500,
-      w: pocketSize * 2,
-      h: pocketSize * 2,
-      start: PI + HALF_PI,
-      stop: TWO_PI,
+      w: pocketSize * 1,
+      h: pocketSize * 1,
     }, // Bottom left pocket - quarter circle
     {
       x: 1000,
       y: 500,
-      w: pocketSize * 2,
-      h: pocketSize * 2,
-      start: PI,
-      stop: PI + HALF_PI,
+      w: pocketSize * 1,
+      h: pocketSize * 1,
     }, // Bottom right pocket - quarter circle
     {
       x: 550,
       y: 50,
-      w: pocketSize * 1.5,
-      h: pocketSize * 1.5,
+      w: pocketSize * 1,
+      h: pocketSize * 1,
       start: 0,
       stop: PI,
     }, // Top middle pocket - semi-circle
     {
       x: 550,
       y: 500,
-      w: pocketSize * 1.5,
-      h: pocketSize * 1.5,
+      w: pocketSize * 1,
+      h: pocketSize * 1,
       start: PI,
       stop: TWO_PI,
     }, // Bottom middle pocket - semi-circle
@@ -58,7 +54,7 @@ function drawPockets() {
 
   // Loop through the pockets array and draw each pocket
   for (let pocket of pockets) {
-    arc(pocket.x, pocket.y, pocket.w, pocket.h, pocket.start, pocket.stop);
+    ellipse(pocket.x, pocket.y, pocket.w, pocket.h);
   }
 }
 
@@ -67,7 +63,12 @@ function coloredBallPocketInteraction() {
     for (let pocket of pockets) {
       if (
         // Check if the colored ball is in the pocket
-        dist(coloredBall.position.x, coloredBall.position.y, pocket.x, pocket.y) <
+        dist(
+          coloredBall.position.x,
+          coloredBall.position.y,
+          pocket.x,
+          pocket.y
+        ) <
         pocketSize - 3
       ) {
         // Add 4 points to the current player
@@ -87,7 +88,6 @@ function coloredBallPocketInteraction() {
     }
   }
 }
-
 
 var whiteBallisPushed = false;
 var resetMessage = false;
@@ -110,7 +110,7 @@ function pocketInteraction() {
             pocket.x,
             pocket.y
           ) <
-          pocketSize - 3
+          pocketSize - 15
         ) {
           ErrorAudio.play();
           if (player1Turn) {
@@ -160,7 +160,7 @@ function pocketInteraction() {
         // Check if any colored ball is in the pocket
         if (
           dist(ball.position.x, ball.position.y, pocket.x, pocket.y) <
-          pocketSize - 3
+          pocketSize - 15
         ) {
           Matter.World.remove(engine.world, ball);
           if (player1Turn) {
