@@ -27,6 +27,7 @@ function mouseReleased() {
     });
 
     console.log(forceX, forceY)
+    cueHitBall.play();
   } else {
     console.log("WhiteBall not selected, so no force applied");
   }

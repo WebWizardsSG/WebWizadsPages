@@ -62,6 +62,33 @@ function drawPockets() {
   }
 }
 
+function coloredBallPocketInteraction() {
+  for (let coloredBall of coloredBallObject) {
+    for (let pocket of pockets) {
+      if (
+        // Check if the colored ball is in the pocket
+        dist(coloredBall.position.x, coloredBall.position.y, pocket.x, pocket.y) <
+        pocketSize - 3
+      ) {
+        // Add 4 points to the current player
+        if (player1Turn) {
+          player1 += 4;
+        } else if (player2Turn) {
+          player2 += 4;
+        }
+
+        // Remove the colored ball from the world
+        Matter.World.remove(engine.world, coloredBall);
+        coloredBallObject = coloredBallObject.filter((b) => b !== coloredBall); // Remove ball from the coloredBallObject array
+        ballInPocket.play();
+
+        break; // Exit the loop as the ball is already removed
+      }
+    }
+  }
+}
+
+
 var whiteBallisPushed = false;
 var resetMessage = false;
 
@@ -85,6 +112,7 @@ function pocketInteraction() {
           ) <
           pocketSize - 3
         ) {
+          ErrorAudio.play();
           if (player1Turn) {
             player1 = player1 - 4;
           }
@@ -92,10 +120,11 @@ function pocketInteraction() {
           if (player2Turn) {
             player2 = player2 - 4;
           }
-
           // Remove the white ball from the world
           Matter.World.remove(engine.world, whiteballs);
           whiteBall.splice(0, 1);
+          ballInPocket.play();
+
           resetMessage = true;
 
           // Create new white ball
@@ -108,7 +137,7 @@ function pocketInteraction() {
           });
 
           // Set the position of the new white ball
-          Matter.Body.setPosition(newWhiteBall, { x: 220, y: 275 });
+          Matter.Body.setPosition(newWhiteBall, { x: 200, y: 275 });
 
           // Reset velocity and angular velocity
           Matter.Body.setVelocity(newWhiteBall, { x: 0, y: 0 });
@@ -126,6 +155,8 @@ function pocketInteraction() {
           break;
         }
 
+        coloredBallPocketInteraction();
+
         // Check if any colored ball is in the pocket
         if (
           dist(ball.position.x, ball.position.y, pocket.x, pocket.y) <
@@ -140,6 +171,7 @@ function pocketInteraction() {
             player2 = player2 + 1;
           }
           balls = balls.filter((b) => b !== ball); // Remove ball from the balls array
+          ballInPocket.play();
           break; // Exit the inner loop as the ball is already removed
         }
       }

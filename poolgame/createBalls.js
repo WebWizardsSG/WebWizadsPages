@@ -1,10 +1,13 @@
 var whiteBall = [];
+var coloredBallObject = [];
+var coloredBallPositions = []; // Store default positions of colored balls
 
 function createWhiteBall() {
   // Create the white ball
-  let whiteX = 220;
+  let whiteX = 200;
   let whiteY = 275;
   let whiteballs = Matter.Bodies.circle(whiteX, whiteY, ballDiameter / 2, {
+    label: 'ball', // Add label
     restitution: 1.1, // Add restitution
     friction: 0.05, // Add friction
     render: {
@@ -15,13 +18,89 @@ function createWhiteBall() {
   whiteBall.push(whiteballs);
 }
 
-function createBalls() {
+function createColoredBalls() {
+  // Manually input coordinates for the colored balls
+  coloredBallPositions = [
+    { x: 250, y: 350 }, // Yellow: 2 spot
+    { x: 400, y: 275 }, // Blue: 5 spot
+    { x: 250, y: 275 }, // Brown: 4 spot
+    { x: 250, y: 200 }, // Green: 3 spot
+    { x: 750, y: 275 }, // Black: 7 spot
+    { x: 500, y: 275 }, // Pink: 6 spot
+  ];
 
+  for (let i = 0; i < coloredBalls.length; i++) {
+    let pos = coloredBallPositions[i];
+    let ball = Matter.Bodies.circle(pos.x, pos.y, ballDiameter / 2, {
+      label: 'ball', // Add label
+      restitution: 1.1,
+      friction: 0.05,
+      render: {
+        fillStyle: coloredBalls[i],
+      },
+    });
+    coloredBallObject.push(ball);
+  }
+}
+
+function resetColoredBall(ball, index) {
+  // Set the position of the colored ball to its default position
+  let pos = coloredBallPositions[index];
+  Matter.Body.setPosition(ball, { x: pos.x, y: pos.y });
+
+  // Reset velocity and angular velocity
+  Matter.Body.setVelocity(ball, { x: 0, y: 0 });
+  Matter.Body.setAngularVelocity(ball, 0);
+
+  // Add the colored ball back to the Matter.js world if it was removed
+  if (!engine.world.bodies.includes(ball)) {
+    Matter.World.add(engine.world, ball);
+  }
+}
+
+function coloredBallPocketInteraction() {
+  for (let i = 0; i < coloredBallObject.length; i++) {
+    let coloredBall = coloredBallObject[i];
+    for (let pocket of pockets) {
+      if (
+        // Check if the colored ball is in the pocket
+        dist(
+          coloredBall.position.x,
+          coloredBall.position.y,
+          pocket.x,
+          pocket.y
+        ) <
+        pocketSize - 3
+      ) {
+        // Add 4 points to the current player
+        if (player1Turn) {
+          player1 += 4;
+        } else if (player2Turn) {
+          player2 += 4;
+        }
+
+        // Play the sound when a ball is pocketed
+        ballInPocket.play();
+
+        // Remove the colored ball from the world
+        Matter.World.remove(engine.world, coloredBall);
+
+        // Reset the colored ball to its default position
+        resetColoredBall(coloredBall, i);
+        break; // Exit the loop as the ball is already handled
+      }
+    }
+  }
+}
+
+function createBalls() {
   console.log(whiteBallisPushed);
 
+  // Create the white ball, if it has not been created
   if (!whiteBallisPushed) {
+    // do not create white ball if it has been created to prevent multiple white balls
     createWhiteBall();
-    console.log("whiteball created")
+    console.log("whiteball created");
   }
 
   // Create the triangle of red balls
@@ -30,6 +109,7 @@ function createBalls() {
       let x = startX + i * spacing;
       let y = startY + j * spacing - (i * spacing) / 2;
       let ball = Matter.Bodies.circle(x, y, ballDiameter / 2, {
+        label: 'ball', // Add label
         restitution: 1.1, // Add restitution
         friction: 0.05, // Add friction
         render: {
@@ -43,23 +123,7 @@ function createBalls() {
     }
   }
 
-  // Create 6 colored balls behind the triangle
-  let behindStartX = startX + (rows * spacing + 3); // Start position for the balls behind
-  for (let i = 0; i < coloredBalls.length; i++) {
-    // Position the balls behind the triangle
-    let x = behindStartX;
-
-    // Center the balls vertically
-    let y = startY + i * spacing - ((coloredBalls.length - 1) * spacing) / 2;
-    let ball = Matter.Bodies.circle(x, y, ballDiameter / 2, {
-      restitution: 1.1, // Add restitution
-      friction: 0.05, // Add friction
-      render: {
-        fillStyle: coloredBalls[i],
-      },
-    });
-    balls.push(ball);
-  }
+  createColoredBalls();
 }
 
 // Annotate the white ball with a triangle, ensure visibility

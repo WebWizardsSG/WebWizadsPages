@@ -49,6 +49,12 @@ let coloredBalls = [
 let engine = Matter.Engine.create();
 engine.world.gravity.y = 0; // Remove gravity
 
+const dimensions = {
+  tableWidth: 900,
+  tableHeight: tableWidth / 2,
+  ballDiameter: tableWidth / 36,
+  pocketSize: (tableWidth / 36) * 1.5,
+};
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
@@ -56,8 +62,102 @@ function setup() {
 
   bordersEngine();
 
+  // Create the balls
+  createBalls();
+
+  // Create the borders (walls) of the table
+  borders = [
+    Matter.Bodies.rectangle(
+      100 + dimensions.tableWidth / 2,
+      45,
+      dimensions.tableWidth + 20,
+      10,
+      {
+        isStatic: true,
+        label: "border", // Add label for borders
+      }
+    ), // Top border
+    Matter.Bodies.rectangle(
+      100 + dimensions.tableWidth / 2,
+      dimensions.tableHeight + 55,
+      dimensions.tableWidth + 20,
+      10,
+      { isStatic: true, label: "border" } // Add label for borders
+    ), // Bottom border
+    Matter.Bodies.rectangle(
+      95,
+      50 + dimensions.tableHeight / 2,
+      10,
+      dimensions.tableHeight,
+      { isStatic: true, label: "border" } // Add label for borders
+    ), // Left border
+    Matter.Bodies.rectangle(
+      105 + dimensions.tableWidth,
+      50 + dimensions.tableHeight / 2,
+      10,
+      dimensions.tableHeight,
+      { isStatic: true, label: "border" } // Add label for borders
+    ), // Right border
+  ];
+
   // Add everything to the world
-  Matter.World.add(engine.world, [...pockets, ...balls, ...borders, ...whiteBall]);
+  Matter.World.add(engine.world, [
+    ...pockets,
+    ...balls,
+    ...borders,
+    ...whiteBall,
+    ...coloredBallObject,
+  ]);
+
+  // Set up collision detection
+  Matter.Events.on(engine, "collisionStart", function (event) {
+    var pairs = event.pairs;
+
+    for (var i = 0; i < pairs.length; i++) {
+      var pair = pairs[i];
+      if (pair.bodyA.label === "ball" && pair.bodyB.label === "ball") {
+        console.log(
+          "Collision detected between balls:",
+          pair.bodyA.label,
+          "and",
+          pair.bodyB.label
+        );
+        ballCollision.play();
+      }
+    }
+  });
+
+  Matter.Events.on(engine, "collisionActive", function (event) {
+    var pairs = event.pairs;
+
+    for (var i = 0; i < pairs.length; i++) {
+      var pair = pairs[i];
+      if (pair.bodyA.label === "ball" && pair.bodyB.label === "ball") {
+        console.log(
+          "Collision still active between balls:",
+          pair.bodyA.label,
+          "and",
+          pair.bodyB.label
+        );
+      }
+    }
+  });
+
+  Matter.Events.on(engine, "collisionEnd", function (event) {
+    var pairs = event.pairs;
+
+    for (var i = 0; i < pairs.length; i++) {
+      var pair = pairs[i];
+      if (pair.bodyA.label === "ball" && pair.bodyB.label === "ball") {
+        console.log(
+          "Collision ended between balls:",
+          pair.bodyA.label,
+          "and",
+          pair.bodyB.label
+        );
+      }
+    }
+  });
 }
 
 function draw() {
@@ -95,83 +195,57 @@ function draw() {
     }
   }
 
+  // Draw the colored balls
+  for (let ball of coloredBallObject) {
+    if (ball && ball.position) {
+      fill(ball.render.fillStyle);
+      ellipse(ball.position.x, ball.position.y, ballDiameter);
+    }
+  }
+
   if (whiteBall[0] && whiteBall[0].position) {
     fill("white");
     ellipse(whiteBall[0].position.x, whiteBall[0].position.y, ballDiameter);
   }
   drawCue();
 
-  if(resetMessage) {
+  if (resetMessage) {
     fill(255);
-    rect(mouseX + 98, mouseY -8, 200, 30);
+    rect(mouseX + 98, mouseY - 8, 200, 30);
     fill(0);
     textSize(20);
     text("White Ball Reseting", mouseX, mouseY);
   }
-  
+
   displayClickedBall();
   annotateWhiteBall();
   pocketInteraction();
+  coloredBallPocketInteraction(); // Call the new function to check for pocketed colored balls
   scoreBoard();
-
 }
 
-function setup() {
-  createCanvas(windowWidth, windowHeight + 200);
-
-  whiteBallClicked = false;
-
-  // Create the balls
-  createBalls();
-
+function bordersEngine() {
   // Create the borders (walls) of the table
   borders = [
+    Matter.Bodies.rectangle(100 + tableWidth / 2, 45, tableWidth + 20, 10, {
+      isStatic: true,
+    }), // Top border
     Matter.Bodies.rectangle(
-      100 + dimensions.tableWidth / 2,
-      45,
-      dimensions.tableWidth + 20,
-      10,
-      {
-        isStatic: true,
-      }
-    ), // Top border
-    Matter.Bodies.rectangle(
-      100 + dimensions.tableWidth / 2,
-      dimensions.tableHeight + 55,
-      dimensions.tableWidth + 20,
+      100 + tableWidth / 2,
+      tableHeight + 55,
+      tableWidth + 20,
       10,
       { isStatic: true }
     ), // Bottom border
+    Matter.Bodies.rectangle(95, 50 + tableHeight / 2, 10, tableHeight, {
+      isStatic: true,
+    }), // Left border
     Matter.Bodies.rectangle(
-      95,
-      50 + dimensions.tableHeight / 2,
+      105 + tableWidth,
+      50 + tableHeight / 2,
       10,
-      dimensions.tableHeight,
-      {
-        isStatic: true,
-      }
-    ), // Left border
-    Matter.Bodies.rectangle(
-      105 + dimensions.tableWidth,
-      50 + dimensions.tableHeight / 2,
-      10,
-      dimensions.tableHeight,
+      tableHeight,
       { isStatic: true }
     ), // Right border
   ];
-
-  // Add everything to the world
-  Matter.World.add(engine.world, [
-    ...pockets,
-    ...balls,
-    ...borders,
-    ...whiteBall,
-  ]);
 }
-
-const dimensions = {
-  tableWidth: 900,
-  tableHeight: tableWidth / 2,
-  ballDiameter: tableWidth / 36,
-  pocketSize: (tableWidth / 36) * 1.5,
-};
