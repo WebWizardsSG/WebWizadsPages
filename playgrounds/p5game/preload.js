@@ -1,0 +1,21 @@
+function preload() {
+  jumpSound = loadSound("Sounds/Jump.mp3");
+  loseSound = loadSound("Sounds/Lose.mp3");
+  Found = loadSound("Sounds/Found.mp3");
+  bg = loadSound("Sounds/bg.mp3");
+  Birds = loadSound("Sounds/Birds.mp3");
+  Death = loadSound("Sounds/Death.mp3");
+  Respawning = loadSound("Sounds/Respawning.mp3");
+  win = loadSound("Sounds/win.mp3");
+  grass = loadImage("Photos/grass.png");
+  grass2 = loadImage("Photos/Grass2.png");
+  grass3 = loadImage("Photos/Grass3.png");
+  doggo = loadImage("Photos/doggo.png");
+  moon = loadImage("Photos/moon.png");
+  friend = loadImage("Photos/friend.png");
+  planet = loadImage("Photos/planet.png");
+  bricks = loadImage("Photos/bricks.png");
+  portal = loadSound("Sounds/portal.mp3");
+  eye = loadImage("Photos/eye.png");
+  health = loadImage("Photos/healthbar.png");
+}
